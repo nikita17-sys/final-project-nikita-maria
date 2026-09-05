@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cookpal</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montez&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -11,44 +11,42 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-<header class="header">
-<div class="top-bar">
-    <div class="container top-bar-container">
-        <div class="top-bar-left">
-            <a href="#">COMMUNITY</a>
-            <a href="#">BOOKS</a>
-            <a href="#">RECEIPE INDEX</a>
-            <a href="#">POPULAR</a>
-        </div>
-        <div class="top-bar-right">
-            <a href="#"><i class="fa-solid fa-plus"></i> REGISTER</a>
-            <a href="#"><i class="fa-solid fa-user"></i> LOGIN</a>
-        </div>
-    </div>
-</div>
-    <div class="container">
-        <img src="img/Logoo.svg" alt="" class="Logoo">
-        <div class="search-box">
-            <input type="text" class="search-input" placeholder="Search">
-        </div>
-        <div class="header-actions">
-            <div class="cart-wrapper">
-                <span class="cart-count">3</span>
-                <i class="fa-solid fa-cart-shopping cart-icon"></i>
+    <header class="header">
+        <div class="top-bar">
+            <div class="container top-bar-container">
+                <div class="top-bar-left">
+                    <a href="#">COMMUNITY</a><a href="#">BOOKS</a><a href="#">RECEIPE INDEX</a><a href="#">POPULAR</a>
+                </div>
+                <div class="top-bar-right">
+                    <a href="#"><i class="fa-solid fa-plus"></i> REGISTER</a>
+                    <a href="#"><i class="fa-solid fa-user"></i> LOGIN</a>
+                </div>
             </div>
         </div>
-        <div class="profile-wrapper">
-            <img src="img/Ellipse 6.svg" alt="Avatar" class="profile-avatar" id="profileBtn">   
-            <div class="profile-dropdown" id="profileDropdown">
-                <a href="#" class="dropdown-item active"><i class="fa-solid fa-user"></i> Profile</a>
-                <a href="#" class="dropdown-item"><i class="fa-solid fa-lock"></i> Privacy</a>
-                <a href="#" class="dropdown-item"><i class="fa-solid fa-bookmark"></i> Collections</a>
-                <a href="#" class="dropdown-item"><i class="fa-solid fa-gear"></i> Settings</a>
-                <a href="#" class="dropdown-item"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        <div class="container">
+            <img src="img/Logoo.svg" alt="Cookpal Logo" class="Logoo">
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="Search">
+            </div>
+            <div class="header-actions">
+                <div class="cart-wrapper">
+                    <span class="cart-count">0</span>
+                    <i class="fa-solid fa-cart-shopping cart-icon"></i>
+                </div>
+            </div>
+            <div class="profile-wrapper">
+                <img src="img/Ellipse 6.svg" alt="Avatar" class="profile-avatar" id="profileBtn">   
+                <div class="profile-dropdown" id="profileDropdown">
+                    <a href="#" class="dropdown-item active"><i class="fa-solid fa-user"></i> Profile</a>
+                    <a href="#" class="dropdown-item"><i class="fa-solid fa-lock"></i> Privacy</a>
+                    <a href="#" class="dropdown-item"><i class="fa-solid fa-bookmark"></i> Collections</a>
+                    <a href="#" class="dropdown-item"><i class="fa-solid fa-gear"></i> Settings</a>
+                    <a href="#" class="dropdown-item"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+                </div>
             </div>
         </div>
-    </div>
-</header>
+    </header>
+
     <section class="hero-banner">
         <div class="container hero-container">
             <div class="hero-content">
@@ -57,29 +55,23 @@
             </div>
         </div>
     </section>
-         <div class="page">
+
+    <div class="page">
         <aside class="sidebar">
             <div class="logo">Filter Recipes</div>
             <div id="filters"></div>
         </aside>
-
         <main class="content">
             <nav class="navigation">
-                <a href="#">Home</a>
-                <a href="#">Explore</a>
-                <a href="#">Help</a>
-                <a href="#">Profile</a>
+                <a href="#">Home</a><a href="#">Explore</a><a href="#">Help</a><a href="#">Profile</a>
             </nav>
             <div id="recipes"></div>
         </main>
-
-        <div class="vegetables">
-            <img src="img/Vegetables.png" alt="Vegetables">
-         </div>
-
+        <div class="vegetables"><img src="img/Vegetables.png" alt="Vegetables"></div>
     </div>
+
     <footer class="footer">
-         <div class="container footer-container">
+        <div class="container footer-container">
             <div class="footer-col footer-brand">
                 <img src="img/Logoo.svg" alt="Cookpal" class="footer-logo">
                 <p class="copyright">All Rights Reserved</p>
@@ -87,94 +79,82 @@
             <div class="footer-col">
                 <h4 class="footer-title">Fresh Recipe</h4>
                 <ul class="footer-links">
-                    <li><a href="#">Recipes</a></li>
-                    <li><a href="#">Winter Salads</a></li>
-                    <li><a href="#">Organic Chicken</a></li>
-                    <li><a href="#">Beef and Mutton</a></li>
-                    <li><a href="#">Flavoured Milk</a></li>
+                    <li><a href="#">Recipes</a></li><li><a href="#">Winter Salads</a></li><li><a href="#">Organic Chicken</a></li><li><a href="#">Beef and Mutton</a></li><li><a href="#">Flavoured Milk</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4 class="footer-title">In News</h4>
                 <ul class="footer-links">
-                    <li><a href="#">Our Blogs</a></li>
-                    <li><a href="#">Contests/Sweepstakes</a></li>
-                    <li><a href="#">Video</a></li>
-                    <li><a href="#">New Releases</a></li>
-                    <li><a href="#">Newsletters</a></li>
+                    <li><a href="#">Our Blogs</a></li><li><a href="#">Contests/Sweepstakes</a></li><li><a href="#">Video</a></li><li><a href="#">New Releases</a></li><li><a href="#">Newsletters</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4 class="footer-title">About US</h4>
                 <ul class="footer-links">
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Our Board</a></li>
-                    <li><a href="#">Our Staff</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQ</a></li><li><a href="#">Our Board</a></li><li><a href="#">Our Staff</a></li><li><a href="#">Contact Us</a></li>
                 </ul>
             </div>
             <div class="footer-col footer-newsletter">
                 <h3 class="newsletter-title">Join Our Newsletter</h3>
                 <form class="newsletter-form" onsubmit="event.preventDefault();">
                     <input type="email" placeholder="Email" class="newsletter-input">
-                    <button type="submit" class="newsletter-btn">
-                        <i class="fa-regular fa-envelope"></i>
-                    </button>
+                    <button type="submit" class="newsletter-btn"><i class="fa-regular fa-envelope"></i></button>
                 </form>
                 <div class="social-links">
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="#"><i class="fa-brands fa-pinterest-p"></i></a>
-                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a><a href="#"><i class="fa-brands fa-instagram"></i></a><a href="#"><i class="fa-brands fa-twitter"></i></a><a href="#"><i class="fa-brands fa-pinterest-p"></i></a><a href="#"><i class="fa-brands fa-youtube"></i></a>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- Корзина -->
     <div class="cart-drawer" id="cartDrawer">
-    <div class="cart-header">
-        <h3>Ваша корзина</h3>
-        <button class="close-btn" id="closeCart">&times;</button>
-    </div>
-    <div class="cart-items" id="cartItems">
-        <p class="empty-msg">Корзина пуста</p>
-    </div>
-    <div class="cart-footer">
-        <div class="cart-total">Итого: $<span id="cartTotal">0</span></div>
-        <button class="checkout-btn" id="checkoutBtn">Оформить заказ</button>
-    </div>
-</div>
-<div class="modal-overlay" id="paymentModal">
-    <div class="modal-content">
-        <h3>Выберите способ оплаты</h3>
-        <div class="payment-options">
-            <button class="pay-option">Apple Pay</button>
-            <button class="pay-option">Google Pay</button>
-            <button class="pay-option">Банковская карта</button>
+        <div class="cart-header">
+            <h3>Ваша корзина</h3>
+            <button class="close-btn" id="closeCart">&times;</button>
         </div>
-        <div class="payment-inputs">
-            <input type="text" placeholder="Номер карты" class="pay-input">
-            <div class="pay-row">
-                <input type="text" placeholder="ММ/ГГ" class="pay-input">
-                <input type="text" placeholder="CVV" class="pay-input">
+        <div class="cart-items" id="cartItems"><p class="empty-msg">Корзина пуста</p></div>
+        <div class="cart-footer">
+            <div class="cart-total">Итого: $<span id="cartTotal">0</span></div>
+            <button class="checkout-btn" id="checkoutBtn">Оформить заказ</button>
+        </div>
+    </div>
+
+    <!-- Окно Оплаты -->
+    <div class="modal-overlay" id="paymentModal">
+        <div class="modal-content">
+            <h3>Выберите способ оплаты</h3>
+            <div class="payment-options">
+                <button class="pay-option">Apple Pay</button>
+                <button class="pay-option">Google Pay</button>
+                <button class="pay-option">Банковская карта</button>
             </div>
+            <div class="payment-inputs">
+                <input type="text" placeholder="Номер карты" class="pay-input">
+                <div class="pay-row">
+                    <input type="text" placeholder="ММ/ГГ" class="pay-input">
+                    <input type="text" placeholder="CVV" class="pay-input">
+                </div>
+            </div>
+            <button class="confirm-pay-btn" id="confirmPayBtn">Оплатить</button>
+            <button class="close-modal-btn" id="closeModal">Отмена</button>
         </div>
-        <button class="confirm-pay-btn" id="confirmPayBtn">Оплатить</button>
-        <button class="close-modal-btn" id="closeModal">Отмена</button>
     </div>
-</div>
-<div class="modal-overlay" id="authModal">
-    <div class="modal-content auth-content">
-        <button class="close-modal-btn close-auth" id="closeAuth">&times;</button>
-        <h3>Вход / Регистрация</h3>
-        <p class="auth-subtitle">Введите свои данные, чтобы продолжить</p>
-        <div class="payment-inputs">
-            <input type="email" placeholder="Ваша почта (email)" class="pay-input">
-            <input type="password" placeholder="Пароль" class="pay-input">
+
+    <!-- Окно Авторизации -->
+    <div class="modal-overlay" id="authModal">
+        <div class="modal-content auth-content">
+            <button class="close-modal-btn close-auth" id="closeAuth">&times;</button>
+            <h3>Вход / Регистрация</h3>
+            <p class="auth-subtitle">Введите свои данные, чтобы продолжить</p>
+            <div class="payment-inputs">
+                <input type="email" placeholder="Ваша почта (email)" class="pay-input">
+                <input type="password" placeholder="Пароль" class="pay-input">
+            </div>
+            <button class="confirm-pay-btn" id="confirmAuthBtn">Продолжить</button>
         </div>
-        <button class="confirm-pay-btn" id="confirmAuthBtn">Продолжить</button>
     </div>
-</div>
+
     <script src="script.js"></script>
 </body>
 </html>

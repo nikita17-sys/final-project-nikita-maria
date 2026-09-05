@@ -254,208 +254,127 @@ function renderRecipes() {
 }
 renderFilters();
 renderRecipes();
-/* ================= 1. ЖИВОЙ ПОИСК ================= */
-const searchInput = document.querySelector('.search-input') || document.querySelector('input[placeholder*="Search"]');
 
-if (searchInput) {
-    searchInput.addEventListener('input', function(e) {
-        const query = e.target.value.toLowerCase().trim();
-        // Ищем все карточки на странице
-        const cards = document.querySelectorAll('.recipe-card, .cuisine-card, [class*="card"]');
 
-        cards.forEach(function(card) {
-            const text = card.innerText.toLowerCase();
-            // Показываем если есть совпадение, иначе скрываем
-            if (text.includes(query)) {
-                card.style.display = '';
-            } else {
-                card.style.display = 'none';
-            }
-        });
-    });
-}
 
-/* ================= 2. ОКТРЫТИЕ ВХОДА / РЕГИСТРАЦИИ ================= */
-const authModal = document.getElementById('authModal');
-const closeAuth = document.getElementById('closeAuth');
-const confirmAuthBtn = document.getElementById('confirmAuthBtn');
+const $ = selector => document.querySelector(selector);
+const toggleClass = (el, cls, state) => el && el.classList.toggle(cls, state);
 
-// Перехватываем клик по кнопкам REGISTER / LOGIN
-document.addEventListener('click', function(e) {
-    const text = e.target.innerText ? e.target.innerText.toLowerCase() : '';
-    const isAuthClick = text.includes('register') || text.includes('login') || text.includes('вход') || text.includes('регистр');
-    
-    if (isAuthClick && !e.target.closest('#authModal')) {
-        e.preventDefault();
-        if (authModal) authModal.classList.add('active');
-    }
-});
-
-if (closeAuth) {
-    closeAuth.addEventListener('click', function() {
-        if (authModal) authModal.classList.remove('active');
-    });
-}
-
-if (confirmAuthBtn) {
-    confirmAuthBtn.addEventListener('click', function() {
-        alert('Авторизация прошла успешно!');
-        if (authModal) authModal.classList.remove('active');
-    });
-}
-
-/* ================= 3. ВЫПАДАЮЩЕЕ МЕНЮ ПРОФИЛЯ ================= */
-const profileBtn = document.querySelector('#profileBtn');
-const profileDropdown = document.querySelector('#profileDropdown');
-
-if (profileBtn && profileDropdown) {
-    profileBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        profileDropdown.classList.toggle('show');
-    });
-
-    document.addEventListener('click', function() {
-        profileDropdown.classList.remove('show');
-    });
-}
-
-const cartWrapper = document.querySelector('.cart-wrapper');
-const cartCount = document.querySelector('.cart-count');
-const cartDrawer = document.getElementById('cartDrawer');
-const closeCart = document.getElementById('closeCart');
-const cartItemsContainer = document.getElementById('cartItems');
-const cartTotalEl = document.getElementById('cartTotal');
-const checkoutBtn = document.getElementById('checkoutBtn');
-
-const paymentModal = document.getElementById('paymentModal');
-const closeModal = document.getElementById('closeModal');
-const confirmPayBtn = document.getElementById('confirmPayBtn');
+const els = {
+    authModal: $('#authModal'),
+    paymentModal: $('#paymentModal'),
+    cartDrawer: $('#cartDrawer'),
+    profileDropdown: $('#profileDropdown'),
+    cartCount: $('.cart-count'),
+    cartItems: $('#cartItems'),
+    cartTotal: $('#cartTotal')
+};
 
 let cart = [];
 
-if (cartWrapper && cartDrawer) {
-    cartWrapper.addEventListener('click', function() {
-        cartDrawer.classList.add('active');
+const searchInput = $('.search-input') || $('input[placeholder*="Search"]');
+searchInput?.addEventListener('input', e => {
+    const query = e.target.value.toLowerCase().trim();
+    document.querySelectorAll('.recipe-card, .cuisine-card, [class*="card"]').forEach(card => {
+        card.style.display = card.innerText.toLowerCase().includes(query) ? '' : 'none';
     });
-}
-if (closeCart && cartDrawer) {
-    closeCart.addEventListener('click', function() {
-        cartDrawer.classList.remove('active');
-    });
-}
-
-document.addEventListener('click', function(e) {
-    if (e.target.closest('#cartDrawer, #paymentModal, #authModal, header, footer')) {
-        return;
-    }
-
-    const card = e.target.closest('.recipe-card, .cuisine-card, [class*="card"], [class*="recipe"]');
-    if (!card) return;
-
-    const titleEl = card.querySelector('h3, h4, h5, p, strong, span');
-    const title = titleEl ? titleEl.innerText.trim().split('\n')[0] : 'Блюдо';
-
-    let price = 12;
-    const allTexts = Array.from(card.querySelectorAll('*')).map(el => el.innerText);
-    const priceString = allTexts.find(t => t && t.includes('$'));
-    if (priceString) {
-        const parsed = parseFloat(priceString.replace(/[^0-9.]/g, ''));
-        if (!isNaN(parsed) && parsed > 0) price = parsed;
-    }
-
-    // Добавляем новый товар или увеличиваем количество
-    const existing = cart.find(item => item.title === title);
-    if (existing) {
-        existing.quantity += 1;
-    } else {
-        cart.push({ title: title, price: price, quantity: 1 });
-    }
-
-    updateCart();
-    if (cartDrawer) cartDrawer.classList.add('active');
 });
 
-if (cartItemsContainer) {
-    cartItemsContainer.addEventListener('click', function(e) {
-        const btn = e.target.closest('button');
-        if (!btn) return;
+document.addEventListener('click', e => {
+    const target = e.target;
+    const text = target.innerText?.toLowerCase() || '';
 
-        const index = parseInt(btn.dataset.index, 10);
-        if (isNaN(index) || !cart[index]) return;
+    if (target.closest('#profileBtn')) {
+        els.profileDropdown?.classList.toggle('show');
+        return;
+    } else {
+        els.profileDropdown?.classList.remove('show');
+    }
 
-        if (btn.classList.contains('qty-minus')) {
-            cart[index].quantity -= 1;
-            if (cart[index].quantity <= 0) cart.splice(index, 1);
-        } else if (btn.classList.contains('qty-plus')) {
-            cart[index].quantity += 1;
-        } else if (btn.classList.contains('remove-btn')) {
-            cart.splice(index, 1);
+    if (target.closest('.cart-wrapper')) return toggleClass(els.cartDrawer, 'active', true);
+
+    const isAuth = ['register', 'login', 'вход', 'регистр'].some(k => text.includes(k));
+    if (isAuth && !target.closest('#authModal')) {
+        e.preventDefault();
+        return toggleClass(els.authModal, 'active', true);
+    }
+
+    if (!target.closest('#cartDrawer, #paymentModal, #authModal, header, footer')) {
+        const card = target.closest('.recipe-card, .cuisine-card, [class*="card"], [class*="recipe"]');
+        if (card) {
+            const title = card.querySelector('h3, h4, h5, p, strong, span')?.innerText.trim().split('\n')[0] || 'Блюдо';
+            const priceText = [...card.querySelectorAll('*')].find(el => el.innerText?.includes('$'))?.innerText;
+            const price = parseFloat(priceText?.replace(/[^0-9.]/g, '')) || 12;
+
+            const existing = cart.find(item => item.title === title);
+            existing ? existing.quantity++ : cart.push({ title, price, quantity: 1 });
+
+            updateCart();
+            toggleClass(els.cartDrawer, 'active', true);
         }
+    }
+});
 
-        updateCart();
-    });
-}
+$('#closeAuth')?.addEventListener('click', () => toggleClass(els.authModal, 'active', false));
+$('#confirmAuthBtn')?.addEventListener('click', () => {
+    alert('Авторизация прошла успешно!');
+    toggleClass(els.authModal, 'active', false);
+});
+
+$('#closeCart')?.addEventListener('click', () => toggleClass(els.cartDrawer, 'active', false));
+
+els.cartItems?.addEventListener('click', e => {
+    const btn = e.target.closest('button');
+    if (!btn) return;
+
+    const idx = parseInt(btn.dataset.index, 10);
+    if (isNaN(idx) || !cart[idx]) return;
+
+    if (btn.classList.contains('qty-minus')) {
+        cart[idx].quantity--;
+        if (cart[idx].quantity <= 0) cart.splice(idx, 1);
+    } else if (btn.classList.contains('qty-plus')) {
+        cart[idx].quantity++;
+    } else if (btn.classList.contains('remove-btn')) {
+        cart.splice(idx, 1);
+    }
+    updateCart();
+});
 
 function updateCart() {
     const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-    if (cartCount) cartCount.innerText = totalCount;
-    if (!cartItemsContainer) return;
-
-    cartItemsContainer.innerHTML = '';
+    if (els.cartCount) els.cartCount.innerText = totalCount;
+    if (!els.cartItems) return;
 
     if (cart.length === 0) {
-        cartItemsContainer.innerHTML = '<p class="empty-msg">Корзина пуста</p>';
-        if (cartTotalEl) cartTotalEl.innerText = '0';
+        els.cartItems.innerHTML = '<p class="empty-msg">Корзина пуста</p>';
+        if (els.cartTotal) els.cartTotal.innerText = '0';
         return;
     }
 
     let total = 0;
-    cart.forEach((item, index) => {
+    els.cartItems.innerHTML = cart.map((item, idx) => {
         const itemTotal = item.price * item.quantity;
         total += itemTotal;
+        return `
+            <div class="cart-item">
+                <div class="item-info">
+                    <strong>${item.title}</strong>
+                    <span>$${item.price} × ${item.quantity} = $${itemTotal}</span>
+                </div>
+                <div class="item-controls">
+                    <button class="qty-btn qty-minus" data-index="${idx}">-</button>
+                    <span>${item.quantity}</span>
+                    <button class="qty-btn qty-plus" data-index="${idx}">+</button>
+                    <button class="remove-btn" data-index="${idx}">×</button>
+                </div>
+            </div>`;
+    }).join('');
 
-        const itemEl = document.createElement('div');
-        itemEl.className = 'cart-item';
-        itemEl.innerHTML = `
-            <div class="item-info">
-                <strong>${item.title}</strong>
-                <span>$${item.price} × ${item.quantity} = $${itemTotal}</span>
-            </div>
-            <div class="item-controls">
-                <button class="qty-btn qty-minus" data-index="${index}">-</button>
-                <span>${item.quantity}</span>
-                <button class="qty-btn qty-plus" data-index="${index}">+</button>
-                <button class="remove-btn" data-index="${index}">×</button>
-            </div>
-        `;
-        cartItemsContainer.appendChild(itemEl);
-    });
-
-    if (cartTotalEl) cartTotalEl.innerText = total;
+    if (els.cartTotal) els.cartTotal.innerText = total;
 }
-
-if (checkoutBtn && paymentModal) {
-    checkoutBtn.addEventListener('click', function() {
-        if (cart.length === 0) {
-            alert('Добавьте хотя бы один товар в корзину!');
-            return;
-        }
-        if (cartDrawer) cartDrawer.classList.remove('active');
-        paymentModal.classList.add('active');
-    });
-}
-
-if (closeModal && paymentModal) {
-    closeModal.addEventListener('click', function() {
-        paymentModal.classList.remove('active');
-    });
-}
-
-if (confirmPayBtn && paymentModal) {
-    confirmPayBtn.addEventListener('click', function() {
-        alert('Оплата прошла успешно! Спасибо за заказ.');
-        cart = [];
-        updateCart();
-        paymentModal.classList.remove('active');
-    });
-}
+$('#checkoutBtn')?.addEventListener('click', () => {
+    toggleClass(els.cartDrawer, 'active', false);
+    toggleClass(els.paymentModal, 'active', true);
+});
+$('#closeModal')?.addEventListener('click', () => toggleClass(els.paymentModal, 'active', false));
