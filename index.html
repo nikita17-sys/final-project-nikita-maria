@@ -4,9 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montez&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
+<header class="header">
+<div class="top-bar">
+    <div class="container top-bar-container">
+        <div class="top-bar-left">
+            <a href="#">COMMUNITY</a>
+            <a href="#">BOOKS</a>
+            <a href="#">RECEIPE INDEX</a>
+            <a href="#">POPULAR</a>
+        </div>
+        <div class="top-bar-right">
+            <a href="#"><i class="fa-solid fa-plus"></i> REGISTER</a>
+            <a href="#"><i class="fa-solid fa-user"></i> LOGIN</a>
+        </div>
+    </div>
+</div>
+    <div class="container">
+        <img src="img/Logoo.svg" alt="" class="Logoo">
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="Search">
+        </div>
+        <div class="header-actions">
+            <div class="cart-wrapper">
+                <span class="cart-count">3</span>
+                <i class="fa-solid fa-cart-shopping cart-icon"></i>
+            </div>
+        </div>
+        <div class="profile-wrapper">
+            <img src="img/Ellipse 6.svg" alt="Avatar" class="profile-avatar" id="profileBtn">   
+            <div class="profile-dropdown" id="profileDropdown">
+                <a href="#" class="dropdown-item active"><i class="fa-solid fa-user"></i> Profile</a>
+                <a href="#" class="dropdown-item"><i class="fa-solid fa-lock"></i> Privacy</a>
+                <a href="#" class="dropdown-item"><i class="fa-solid fa-bookmark"></i> Collections</a>
+                <a href="#" class="dropdown-item"><i class="fa-solid fa-gear"></i> Settings</a>
+                <a href="#" class="dropdown-item"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            </div>
+        </div>
+    </div>
+</header>
+    <section class="hero-banner">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Meat Chicken</h1>
+                <a href="#" class="hero-btn">More</a>
+            </div>
+        </div>
+    </section>
          <div class="page">
         <aside class="sidebar">
             <div class="logo">Filter Recipes</div>
@@ -28,6 +78,7 @@
          </div>
 
     </div>
+    
     <script src="script.js"></script>
 </body>
 </html>
