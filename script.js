@@ -254,3 +254,26 @@ function renderRecipes() {
 }
 renderFilters();
 renderRecipes();
+const searchInput = document.querySelector('.search-input');
+const cartBtn = document.querySelector('.cart-wrapper'); 
+const cartCount = document.querySelector('.cart-count');
+
+if (cartBtn) {
+    cartBtn.addEventListener('click', () => {
+        alert('Корзина пока пуста!');
+    });
+}
+
+const profileBtn = document.querySelector('#profileBtn');
+const profileDropdown = document.querySelector('#profileDropdown');
+
+if (profileBtn && profileDropdown) {
+    profileBtn.addEventListener('click', (event) => {
+        event.stopPropagation();
+        profileDropdown.classList.toggle('show');
+    });
+
+    document.addEventListener('click', () => {
+        profileDropdown.classList.remove('show');
+    });
+}
