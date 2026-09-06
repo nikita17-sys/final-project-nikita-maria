@@ -187,7 +187,7 @@ function createStars(rating) {
 
 function createRecipeCard(recipe) {
     return `
-        <article class="card">
+        <article class="card" onclick="openRecipe('${recipe.name}')">
             <img
                 class="card-image"
                 src="${recipe.image}"
@@ -252,5 +252,13 @@ function renderRecipes() {
         })
         .join("");
 }
+
+// function openRecipe
+
+function openRecipe(name) {
+    const encoded = encodeURIComponent(name);
+    window.location.href = `recipe/recipe.html?name=${encoded}`;
+}
+
 renderFilters();
 renderRecipes();
